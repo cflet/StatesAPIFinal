@@ -1,6 +1,6 @@
 const data = {
     employees: require('../model/employees.json'),
-    setEmployees: function (data) { this.employee = data }
+    setEmployees: function (data) { this.employees = data }
 }
 
 
@@ -9,28 +9,20 @@ const getAllEmployees = (req, res) => {
 }
 
 const createNewEmployee = (req, res) => {
-
     const newEmployee = {
-        //id: data.employees[data.employees.length - 1].id +1 || 1
         id: data.employees?.length ? data.employees[data.employees.length - 1].id + 1 : 1,
-        "firstname": req.body.firstname,
-        "lastname": req.body.lastname
+        firstname: req.body.firstname,
+        lastname: req.body.lastname
     }
 
     if (!newEmployee.firstname || !newEmployee.lastname) {
-        return res.status(400).json({ message: 'First and last name are requirements.' });
+        return res.status(400).json({ 'message': 'First and last names are required.' });
     }
 
     data.setEmployees([...data.employees, newEmployee]);
     res.status(201).json(data.employees);
 }
 
-// const updateEmployee = (req, res) => {
-//     res.json({
-//         "firstname": req.body.firstname,
-//         "lastname": req.body.lastname
-//     })
-// }
 
 const updateEmployee = (req, res) => {
     //find employee mathing enterd id
@@ -53,11 +45,6 @@ const updateEmployee = (req, res) => {
     res.json(data.employees);
 }
 
-// const deleteEmployee = (req, res) => {
-//     res.json({
-//         "id": req.body.id
-//     })
-// }
 
 const deleteEmployee = (req, res) => {
     const employee = data.employees.find(emp => emp.id === parseInt(req.body.id));
@@ -72,11 +59,6 @@ const deleteEmployee = (req, res) => {
     res.json(data.employees);
 }
 
-// const getEmployee = (req, res) => {
-//     res.json({
-//         "id": req.params.id
-//     });
-// }
 
 const getEmployee = (req, res) => {
     const employee = data.employees.find(emp => emp.id === parseInt(req.params.id));

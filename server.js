@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-const corsOptions = require('./config/corsOptions');
+//const corsOptions = require('./config/corsOptions');
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
 const mongoose = require('mongoose');
@@ -13,13 +13,12 @@ const PORT = process.env.PORT || 3500;
 //connect to MongoDB
 connectDB();
 
-
 //custom middleware
 app.use(logger);
 
-
-app.use(cors(corsOptions));
-
+//Cors Options removed 
+//app.use(cors(corsOptions));
+app.use(cors());
 
 //built-in middleware to handle urlencoded data
 //in other words, form data; to get form params
@@ -31,8 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //built-in serve static files like css, images
-app.use(express.static(path.join(__dirname, '/public')));
-app.use('/subdir', express.static(path.join(__dirname, '/public')));
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 
@@ -41,8 +38,8 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.use('/', require('./routes/root'));
 //router for subdir
 app.use('/register', require('./routes/register'));
-app.use('/subdir', require('./routes/subdir'));
 app.use('/employees', require('./routes/api/employees'));
+app.use('/states', require('./routes/api/states'));
 
 // app.get('^/$|/index(.html)?', (req, res) => {
 //     //res.send('Hello Cheron');
