@@ -10,8 +10,20 @@ router.route('/')
 //.put(statesController.updateState)
 //.delete(statesController.deleteState);
 
+router.route('/:state/capital')
+    .get(statesController.getStateCapital)
+router.route('/:state/nickname')
+    .get(statesController.getStateNickname)
+router.route('/:state/population')
+    .get(statesController.getStatePop)
+router.route('/:state/admission')
+    .get(statesController.getStateAdmission)
+
 router.route('/:state')
-    .get(statesController.getState);
+    .get(statesController.getState)
+
+
+    ;
 
 
 module.exports = router;
