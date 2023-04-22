@@ -1,1 +1,2 @@
 2023	04	08	21:17:24	7458dbbc-55a2-4d2b-94d3-1ff7343c53a7	Error:  This is not allowed by Cheron
+2023	04	22	16:46:44	192a7987-4e9e-4cd1-a89f-e0a15e7847a4	TypeError:  Cannot read properties of undefined (reading 'toUpperCase')

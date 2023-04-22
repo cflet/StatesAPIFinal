@@ -140,3 +140,16 @@
 2023	04	20	21:08:42	dca650f6-6e60-431c-a084-b63a7260e3cb	POST	undefined	/employees
 2023	04	20	21:08:55	fafdfa49-542f-4fd0-8a3c-102bba460a31	PUT	undefined	/employees
 2023	04	20	21:09:00	e0d0eee4-8372-4146-91ce-923a5847f3cf	GET	undefined	/employees
+2023	04	22	16:43:39	5ce44b5a-9376-4450-b992-9f3e11c2dfba	GET	undefined	/employees/AL
+2023	04	22	16:43:47	3f8b76a1-de00-4106-b431-3da750c68656	GET	undefined	/states/AL
+2023	04	22	16:43:58	19522ad4-e5c5-48cf-a8cb-33d31fbad268	GET	undefined	/states/
+2023	04	22	16:44:25	a2ebf19a-3120-4544-9c3c-48955913eeef	GET	undefined	/states/
+2023	04	22	16:44:28	474cf344-1678-47c0-aee0-b968ad36aefc	GET	undefined	/states/AL
+2023	04	22	16:44:34	f3c8dc6c-b244-4f18-9c51-8e1bf5538556	GET	undefined	/states/al
+2023	04	22	16:44:40	1ae6c8fe-204d-443c-8321-d577c5c01dfe	GET	undefined	/states/HI
+2023	04	22	16:45:35	edd28cdd-d932-4c22-abea-6eca89dc27e7	GET	undefined	/states/HI
+2023	04	22	16:46:44	d16e9d53-0443-4a4a-909d-1209b9f23374	GET	undefined	/states/hi
+2023	04	22	16:47:58	3cb15fae-45d4-42c2-a6db-465a4fdb1eae	GET	undefined	/states/hi
+2023	04	22	16:48:03	f7c1be48-51c2-4f4d-82cc-56b96a799a3e	GET	undefined	/states/Hi
+2023	04	22	16:48:07	ec0962f5-ec87-4815-840f-b5ca9b951a5d	GET	undefined	/states/aL
+2023	04	22	16:48:30	da91dedc-f3c2-42fc-a930-d87d0d40511c	GET	undefined	/states/lp
