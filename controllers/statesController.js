@@ -13,10 +13,10 @@ const getStateCapital = (req, res) => {
     if (!state) {
         return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
     }
-    response = [{
+    response = {
         "state": state.state,
         "capital": state.capital_city
-    }]
+    }
     res.json(response);
 }
 
@@ -26,10 +26,10 @@ const getStateNickname = (req, res) => {
     if (!state) {
         return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
     }
-    response = [{
+    response = {
         "state": state.state,
         "nickname": state.nickname
-    }]
+    }
     res.json(response);
 }
 
@@ -40,10 +40,10 @@ const getStatePop = (req, res) => {
     if (!state) {
         return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
     }
-    response = [{
+    response = {
         "state": state.state,
         "population": state.population
-    }]
+    }
     res.json(response);
 }
 
@@ -54,10 +54,10 @@ const getStateAdmission = (req, res) => {
     if (!state) {
         return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
     }
-    response = [{
+    response = {
         "state": state.state,
         "admitted": state.admission_date
-    }]
+    }
     res.json(response);
 }
 
