@@ -168,3 +168,11 @@
 2023	04	22	17:39:32	cd7dad06-1457-4942-a198-cf11759a0313	GET	undefined	/states/al/population
 2023	04	22	17:41:29	db774a2f-830c-433e-b245-cdb43c5de002	GET	undefined	/states/al/admission
 2023	04	22	17:41:35	4edba6e6-6924-49b7-be4d-76096bfcb86a	GET	undefined	/states/KS/admission
+2023	04	22	18:12:48	b399b2e4-ed45-4111-8403-70030ba2a52b	GET	undefined	/states/KS/nickname
+2023	04	22	18:12:54	7c4cead9-a9e9-44d9-b297-badfbb7b32d0	GET	undefined	/states/KS/capital
+2023	04	22	18:12:59	0114b91b-ecb7-45f5-addb-a4857ad65d4b	GET	undefined	/states/al/capital
+2023	04	22	18:13:05	c3053ce8-11dc-4bdf-b496-522cc1e72cd2	GET	undefined	/states/al/population
+2023	04	22	18:13:13	a1c2b952-7d6f-4fd0-bd9d-7164f7d0381a	GET	undefined	/states/al/admission
+2023	04	22	18:13:22	2c9d5d58-c4cb-472b-aa55-1c30be7e9c5f	GET	undefined	/states/al/
+2023	04	22	18:13:29	fe5756ce-17b3-418a-ad6e-52b6475ebf62	GET	undefined	/states/al/nickname
+2023	04	22	18:13:34	f97f3b13-a85c-45d9-85fe-6144273985f0	GET	undefined	/states/
