@@ -1,6 +1,7 @@
 const data = {
     states: require('../model/statesData.json'),
     setStates: function (data) { this.state = data }
+    //contig: function () {}
 }
 
 const getAllStates = (req, res) => {
@@ -8,7 +9,7 @@ const getAllStates = (req, res) => {
     switch (req.query.contig) {
         //Contiguous means the lower 48 and not HI and AK
         case "true":
-            response = data.states.filter(state => state.code !== "HI" || state.code !== "AK");
+            response = data.states.filter(state => state.code !== "HI" && state.code !== "AK");
             res.json(response);
             break;
 
