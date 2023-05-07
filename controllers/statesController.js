@@ -4,7 +4,24 @@ const data = {
 }
 
 const getAllStates = (req, res) => {
-    res.json(data.states)
+
+    switch (req.query.contig) {
+        //Contiguous means the lower 48 and not HI and AK
+        case "true":
+            response = data.states.filter(state => state.code !== "HI" || state.code !== "AK");
+            res.json(response);
+            break;
+
+        case "false":
+            response = data.states.filter(state => state.code == "HI" || state.code == "AK");
+            res.json(response);
+            break;
+        default:
+            res.json(data.states)
+
+    }
+
+
 }
 
 const getStateCapital = (req, res) => {
@@ -42,7 +59,7 @@ const getStatePop = (req, res) => {
     }
     response = {
         "state": state.state,
-        "population": state.population
+        "population": state.population.toLocaleString()
     }
     res.json(response);
 }
