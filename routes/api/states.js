@@ -25,6 +25,7 @@ router.route('/:state')
 router.route('/:state/create')
     .post(statesController.createState)
 router.route('/:state/funfact')
+    .get(statesController.getFunfact)
     .post(statesController.postState)
     ;
 

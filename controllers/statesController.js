@@ -63,7 +63,7 @@ const postState = async (req, res) => {
 
 const getAllStates = async (req, res) => {
 
-
+    const getStates = await State.find();
 
     switch (req.query.contig) {
         //Contiguous means the lower 48 and not HI and AK
@@ -158,6 +158,27 @@ const getState = async (req, res) => {
 }
 
 
+const getFunfact = async (req, res) => {
+    const toUpper = (req.params.state).toUpperCase();
+    const state = data.states.find(state => state.code === (toUpper));
+    if (!state) {
+        return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
+    }
+
+    const getState = await State.findOne({ stateCode: toUpper }, 'funfacts').exec();
+
+    if (getState) {
+        const funfact = { 'funfact': getState.funfacts[Math.floor(Math.random() * 4)] };
+        res.json(funfact);
+    } else {
+        const response = {
+            'message': `No Fun Facts found for ${state.state}`
+        };
+        res.json(response);
+    }
+
+}
+
 
 
 
@@ -174,5 +195,6 @@ module.exports = {
     getStatePop,
     getStateAdmission,
     createState,
-    postState
+    postState,
+    getFunfact
 }
