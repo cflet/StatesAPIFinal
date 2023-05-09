@@ -26,26 +26,6 @@ const createState = async (req, res) => {
 }
 
 
-// const postState = async (req, res) => {
-//     if (!req?.body?.stateCode || !req?.body?.funfacts) {
-//         return res.status(400).json({ 'message': 'Check this - missing info' });
-//     }
-
-//     console.log(req.body.funfacts);
-
-//     const state = await State.findOne({ stateCode: req.body.stateCode }).exec();
-
-//     if (!state) {
-//         return res.status(204).json({ "message": `No state matches stateCode ${req.body.stateCode}.` });
-//     }
-
-//     if (req.body?.funfacts) state.funfacts.push(req.body.funfacts);
-
-//     const result = await state.save(done);
-//     res.json(result);
-
-// }
-
 const postState = async (req, res) => {
     if (!req?.body?.stateCode || !req?.body?.funfacts) {
         return res.status(400).json({ 'message': 'State fun facts value required' });
@@ -81,7 +61,9 @@ const postState = async (req, res) => {
 
 
 
-const getAllStates = (req, res) => {
+const getAllStates = async (req, res) => {
+
+
 
     switch (req.query.contig) {
         //Contiguous means the lower 48 and not HI and AK
@@ -154,13 +136,25 @@ const getStateAdmission = (req, res) => {
     res.json(response);
 }
 
-const getState = (req, res) => {
+const getState = async (req, res) => {
     const toUpper = (req.params.state).toUpperCase();
     const state = data.states.find(state => state.code === (toUpper));
     if (!state) {
         return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
     }
+
+    const getState = await State.findOne({ stateCode: toUpper }, 'funfacts').exec();
+
+
+    if (getState) {
+        const funfact = { 'funfacts': getState.funfacts };
+        const response = { ...state, ...funfact };
+        res.json(response);
+    }
+
     res.json(state);
+
+
 }
 
 
