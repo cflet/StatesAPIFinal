@@ -57,12 +57,12 @@ const postState = async (req, res) => {
         });
     }
 
+    const bodyToUpper = (req.body.stateCode).toUpperCase();
 
     const funfacts = (req.body.funfacts);
-    console.log(funfacts);
 
-    const state = await State.findOneAndUpdate(
-        { stateCode: req.body.stateCode },
+    const newState = await State.findOneAndUpdate(
+        { stateCode: bodyToUpper },
         {
             $push:
                 { funfacts: { $each: funfacts } }
@@ -73,7 +73,7 @@ const postState = async (req, res) => {
 
     );
 
-    res.json(state);
+    res.json(newState);
 
 
 
