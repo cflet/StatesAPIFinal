@@ -22,7 +22,10 @@ router.route('/:state/admission')
 router.route('/:state')
     .get(statesController.getState)
 
-
+router.route('/:state/create')
+    .post(statesController.createState)
+router.route('/:state/funfact')
+    .post(statesController.postState)
     ;
 
 
