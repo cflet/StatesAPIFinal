@@ -26,23 +26,48 @@ const createState = async (req, res) => {
 }
 
 
+// const postState = async (req, res) => {
+//     if (!req?.body?.stateCode || !req?.body?.funfacts) {
+//         return res.status(400).json({ 'message': 'Check this - missing info' });
+//     }
+
+//     console.log(req.body.funfacts);
+
+//     const state = await State.findOne({ stateCode: req.body.stateCode }).exec();
+
+//     if (!state) {
+//         return res.status(204).json({ "message": `No state matches stateCode ${req.body.stateCode}.` });
+//     }
+
+//     if (req.body?.funfacts) state.funfacts.push(req.body.funfacts);
+
+//     const result = await state.save(done);
+//     res.json(result);
+
+// }
+
 const postState = async (req, res) => {
     if (!req?.body?.stateCode || !req?.body?.funfacts) {
         return res.status(400).json({ 'message': 'Check this - missing info' });
     }
 
-    console.log(req.body.funfacts);
 
-    const state = await State.findOne({ stateCode: req.body.stateCode }).exec();
+    const funfacts = (req.body.funfacts);
+    console.log(funfacts);
 
-    if (!state) {
-        return res.status(204).json({ "message": `No state matches stateCode ${req.body.stateCode}.` });
-    }
+    const state = await State.findOneAndUpdate(
+        { stateCode: req.body.stateCode },
+        {
+            $push:
+                { funfacts: { $each: funfacts } }
+        },
+        {
+            new: true
+        }
 
-    if (req.body?.funfacts) state.funfacts.push(req.body.funfacts);
+    );
 
-    const result = await state.save(done);
-    res.json(result);
+    res.json(state);
 
 
 
