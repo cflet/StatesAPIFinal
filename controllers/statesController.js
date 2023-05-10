@@ -1,7 +1,6 @@
 const data = {
     states: require('../model/statesData.json'),
     setStates: function (data) { this.state = data }
-    //contig: function () {}
 }
 
 
@@ -55,15 +54,13 @@ const postState = async (req, res) => {
 
     res.json(newState);
 
-
-
 }
 
 
 
 const getAllStates = async (req, res) => {
 
-    const getStates = await State.find();
+    //const getStates = await State.find();
 
     switch (req.query.contig) {
         //Contiguous means the lower 48 and not HI and AK
@@ -154,11 +151,64 @@ const getState = async (req, res) => {
 
     res.json(state);
 
-
 }
 
 
 const getFunfact = async (req, res) => {
+    const toUpper = (req.params.state).toUpperCase();
+    const state = data.states.find(state => state.code === (toUpper));
+    if (!state) {
+        return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
+    }
+
+    const getState = await State.findOne({ stateCode: toUpper }, 'funfacts').exec();
+
+    if (getState) {
+        const funfact = { 'funfact': getState.funfacts[Math.floor(Math.random() * 3)] };
+        res.json(funfact);
+    } else {
+        const response = {
+            'message': `No Fun Facts found for ${state.state}`
+        };
+        res.json(response);
+    }
+
+}
+
+const patchState = async (req, res) => {
+    if (!req?.body?.index) {
+        return res.status(400).json({ 'message': 'State fun fact index value required' });
+    }
+
+    if (!req?.body?.funfact) {
+        return res.status(400).json({ 'message': 'State fun fact value required' });
+    }
+
+    const toUpper = (req.params.state).toUpperCase();
+    const state = data.states.find(state => state.code === (toUpper));
+    if (!state) {
+        return res.status(400).json({ "message": `Invalid state abbreviation parameter` });
+    }
+
+    const getState = await State.findOne({ stateCode: toUpper }, 'funfacts').exec();
+
+    if (getState) {
+        const funfact = { 'funfact': getState.funfacts[Math.floor(Math.random() * 3)] };
+        res.json(funfact);
+    } else {
+        const response = {
+            'message': `No Fun Facts found for ${state.state}`
+        };
+        res.json(response);
+    }
+
+}
+
+const deleteState = async (req, res) => {
+    if (!req?.body?.index) {
+        return res.status(400).json({ 'message': 'State fun fact index value required' });
+    }
+
     const toUpper = (req.params.state).toUpperCase();
     const state = data.states.find(state => state.code === (toUpper));
     if (!state) {
@@ -186,7 +236,6 @@ const getFunfact = async (req, res) => {
 
 
 
-
 module.exports = {
     getAllStates,
     getState,
@@ -196,5 +245,7 @@ module.exports = {
     getStateAdmission,
     createState,
     postState,
-    getFunfact
+    getFunfact,
+    patchState,
+    deleteState
 }
