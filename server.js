@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-//const corsOptions = require('./config/corsOptions');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const PORT = process.env.PORT || 3200;
@@ -11,11 +10,7 @@ const PORT = process.env.PORT || 3200;
 //connect to MongoDB
 connectDB();
 
-//custom middleware
-//app.use(logger);
-
-//Cors Options removed 
-//app.use(cors(corsOptions));
+//Cors Options 
 app.use(cors());
 
 //built-in middleware to handle urlencoded data
@@ -31,63 +26,12 @@ app.use(express.json());
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 
-
 //routes
 app.use('/', require('./routes/root'));
 //router for subdir
 app.use('/employees', require('./routes/api/employees'));
 app.use('/states', require('./routes/api/states'));
 
-// app.get('^/$|/index(.html)?', (req, res) => {
-//     //res.send('Hello Cheron');
-//     //res.sendFile('/views/index.html', { root: __dirname });
-//     res.sendFile(path.join(__dirname, 'views', 'index.html'));
-// });
-
-// app.get('/new-page(.html)?', (req, res) => {
-//     //res.send('Hello Cheron');
-//     //res.sendFile('/views/index.html', { root: __dirname });
-//     res.sendFile(path.join(__dirname, 'views', 'new-page.html'));
-// });
-
-// app.get('/old-page(.html)?', (req, res) => {
-//     res.redirect(301, '/new-page.html'); //send 302 by default
-// });
-
-//Route Handler
-// app.get('/hello(.html)?', (req, res, next) => {
-//     console.log('attempted to reach hello.html page');
-//     next();
-// }, (req, res) => {
-//     res.send('Hello World end');
-// });
-
-
-//chaining route handlers also middleware
-//three types: built-in, custom, 3rd party
-// const one = (req, res, next) => {
-//     console.log('one');
-//     next();
-// }
-
-// const two = (req, res, next) => {
-//     console.log('two');
-//     next();
-// }
-
-// const three = (req, res) => {
-//     console.log('three');
-//     res.send('All done');
-// }
-
-// app.get('/chain(.html)?', [one, two, three]);
-
-
-
-//catch all
-// app.get('/*', (req, res) => {
-//     res.status(404).sendFile(path.join(__dirname, 'views', '404.html')); //set status since 404 page will be found
-// });
 
 app.all('*', (req, res) => {
     res.status(404);
@@ -100,7 +44,6 @@ app.all('*', (req, res) => {
     }
 });
 
-//app.use(errorHandler);
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');

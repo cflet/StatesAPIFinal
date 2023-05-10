@@ -168,7 +168,7 @@ const getFunfact = async (req, res) => {
     const getState = await State.findOne({ stateCode: toUpper }, 'funfacts').exec();
 
     if (getState) {
-        const funfact = { 'funfact': getState.funfacts[Math.floor(Math.random() * 4)] };
+        const funfact = { 'funfact': getState.funfacts[Math.floor(Math.random() * 3)] };
         res.json(funfact);
     } else {
         const response = {
