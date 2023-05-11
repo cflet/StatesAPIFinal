@@ -5,7 +5,7 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
-const PORT = process.env.PORT || 3200;
+const PORT = process.env.PORT || 3000;
 
 //connect to MongoDB
 connectDB();
